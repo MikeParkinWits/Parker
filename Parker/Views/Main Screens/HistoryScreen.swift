@@ -2,7 +2,7 @@
 //  HistoryScreen.swift
 //  Parker
 //
-//  Created by Mike Parkin on 2022/10/05.
+//  Created by Mike Parkin
 //
 
 import SwiftUI
@@ -12,6 +12,28 @@ struct HistoryScreen: View {
 	
 	@State private var parkHistoryList: [ParkHistory] = [
 		ParkHistory(
+			parkNum: 000003,
+			locationName: "44 Stanley",
+			locationAddress: "Braamfontein",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "27/02/2022",
+			parkPrice: 10,
+			parkTime: 72,
+			parkImage: "test1"
+		),
+		ParkHistory(
+			parkNum: 000002,
+			locationName: "Parkhurst Strip",
+			locationAddress: "Parkhurst",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "25/02/2022",
+			parkPrice: 10,
+			parkTime: 64,
+			parkImage: "testImage_square"
+		),
+		ParkHistory(
 			parkNum: 000001,
 			locationName: "44 Stanley",
 			locationAddress: "Braamfontein",
@@ -20,40 +42,7 @@ struct HistoryScreen: View {
 			parkDate: "22/02/2022",
 			parkPrice: 8,
 			parkTime: 43,
-			parkImage: "testImage_square"
-		),
-		ParkHistory(
-			parkNum: 000002,
-			locationName: "44 Stanley",
-			locationAddress: "Braamfontein",
-			locationLat: -26.1850882,
-			locationLong: 28.0187231,
-			parkDate: "22/02/2022",
-			parkPrice: 8,
-			parkTime: 43,
-			parkImage: "testImage_square"
-		),
-		ParkHistory(
-			parkNum: 000002,
-			locationName: "44 Stanley",
-			locationAddress: "Braamfontein",
-			locationLat: -26.1850882,
-			locationLong: 28.0187231,
-			parkDate: "22/02/2022",
-			parkPrice: 8,
-			parkTime: 43,
-			parkImage: "testImage_square"
-		),
-		ParkHistory(
-			parkNum: 000003,
-			locationName: "44 Stanley",
-			locationAddress: "Braamfontein",
-			locationLat: -26.1850882,
-			locationLong: 28.0187231,
-			parkDate: "22/02/2022",
-			parkPrice: 8,
-			parkTime: 43,
-			parkImage: "testImage_square"
+			parkImage: "test1"
 		)
 	]
 	
@@ -168,7 +157,7 @@ struct DetailsView: View {
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.horizontal)
 					
-					Text("R8")
+					Text("R" + String(parkHistory.parkPrice))
 						.font(.largeTitle)
 						.fontWeight(.bold)
 						.padding([.top, .bottom, .trailing])
@@ -180,7 +169,7 @@ struct DetailsView: View {
 					VStack(alignment: .leading){
 						Text("Date Parked").fontWeight(.semibold)
 							.font(.title3)
-						Text("22/09/2022").fontWeight(.regular).font(.body)
+						Text(parkHistory.parkDate).fontWeight(.regular).font(.body)
 					}
 					
 					Spacer()
@@ -188,7 +177,7 @@ struct DetailsView: View {
 					VStack(alignment: .leading){
 						Text("Time Parked").fontWeight(.semibold)
 							.font(.title3)
-						Text("43 minutes").fontWeight(.regular).font(.body)
+						Text(String(parkHistory.parkTime) + " minutes").fontWeight(.regular).font(.body)
 					}
 					
 
@@ -239,16 +228,17 @@ struct CardViewOne: View {
 	
 	var body: some View {
 		HStack(alignment: .center) {
-			Image("testImage_square")
+			Image(parkHistory.parkImage)
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.cornerRadius(10)
 				.padding(12)
 			
 			VStack(alignment: .leading){
-				Text("44 Stanley")
+				Text(parkHistory.locationName)
 					.font(.title3)
 					.fontWeight(.semibold)
+					.fixedSize()
 				
 				HStack{
 					
@@ -262,14 +252,14 @@ struct CardViewOne: View {
 				
 				Spacer()
 				
-				Text("22/09/2022")
+				Text(parkHistory.parkDate)
 					.fontWeight(.light)
 					.foregroundColor(.secondary)
 					.font(.body)
 			}
 			.padding([.top, .bottom, .trailing], 12)
 			
-			Text("R8")
+			Text("R " + String(parkHistory.parkPrice))
 				.font(.largeTitle)
 				.fontWeight(.semibold)
 				.padding([.top, .bottom, .trailing], 20)

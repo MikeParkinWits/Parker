@@ -2,12 +2,13 @@
 //  ParkingAreas.swift
 //  Parker
 //
-//  Created by Mike Parkin on 2022/10/04.
+//  Created by Mike Parkin
 //
 
 import SwiftUI
 
 struct ParkingAreas: View {
+	
 	var body: some View {
 		Button{} label: {
 			VStack(alignment: .leading){
@@ -15,6 +16,7 @@ struct ParkingAreas: View {
 				Image("imageTestTwo")
 					.resizable()
 					.aspectRatio(contentMode: .fit)
+					
 				
 					.overlay(
 						
@@ -43,8 +45,9 @@ struct ParkingAreas: View {
 					.foregroundColor(.secondary)
 					.font(.footnote)
 			}
+			
 		}
-		.frame(minWidth: 10, minHeight: 10)
+		
 	}
 }
 

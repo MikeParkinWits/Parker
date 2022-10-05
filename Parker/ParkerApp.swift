@@ -2,7 +2,7 @@
 //  ParkerApp.swift
 //  Parker
 //
-//  Created by Mike Parkin on 2022/10/04.
+//  Created by Mike Parkin
 //
 
 import SwiftUI

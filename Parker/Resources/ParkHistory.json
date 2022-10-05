@@ -1,0 +1,13 @@
+[
+	{
+		"parkNum": 000003,
+		"locationName": "44 Stanley",
+		"locationAddress": "Braamfontein",
+		"locationLat": -26.1850882,
+		"locationLong": 28.0187231,
+		"parkDat": "27/02/2022",
+		"parkPrice": 10,
+		"parkTime": 72,
+		"parkImage": "testImageTwo_Square"
+	}
+]

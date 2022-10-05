@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Parker
 //
-//  Created by Mike Parkin on 2022/10/04.
+//  Created by Mike Parkin
 //
 
 import SwiftUI
@@ -20,6 +20,11 @@ struct ContentView: View {
 			.tabItem{
 				Image(systemName: "menucard")
 				Text("History")
+			}
+			ProfileScreen()
+			.tabItem{
+				Image(systemName: "person.crop.circle")
+				Text("Profile")
 			}
 		}
 		
