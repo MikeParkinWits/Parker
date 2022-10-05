@@ -10,97 +10,91 @@ import MapKit
 
 struct HistoryScreen: View {
 	
-	@State private var emojiList: [EmojiItem] = [
-		EmojiItem(
-			emoji: "👾",
-			name: "Alien Monster",
-			description: "A friendly-looking, tentacled space creature with two eyes."),
-		EmojiItem(
-			emoji: "🥑",
-			name: "Avocado",
-			description: "A pear-shaped avocado, sliced in half to show its yellow-green flesh and "
-			+ "large brown pit."),
-		EmojiItem(
-			emoji: "🍟",
-			name: "French Fries",
-			description: "Thin-cut, golden-brown French fries, served in a red carton, as at "
-			+ "McDonald’s."),
-		EmojiItem(
-			emoji: "🍕",
-			name: "Pizza",
-			description: "A slice of pepperoni pizza, topped with black olives on Google. WhatsApp "
-			+ "adds green pepper, Samsung white onion."),
-		EmojiItem(
-			emoji: "🧩",
-			name: "Puzzle Piece",
-			description: "Puzzle Piece was approved as part of Unicode 11.0 in 2018 under the name "
-			+ "“Jigsaw Puzzle Piece” and added to Emoji 11.0 in 2018."),
-		EmojiItem(
-			emoji: "🚀",
-			name: "Rocket",
-			description: "A rocket being propelled into space."),
-		EmojiItem(
-			emoji: "🗽",
-			name: "Statue of Liberty",
-			description: "The Statue of Liberty, often used as a depiction of New York City."),
-		EmojiItem(
-			emoji: "🧸",
-			name: "Teddy Bear",
-			description: "A classic teddy bear, as snuggled by a child when going to sleep."),
-		EmojiItem(
-			emoji: "🦄",
-			name: "Unicorn",
-			description: "The face of a unicorn, a mythical creature in the form of a white horse with "
-			+ "a single, long horn on its forehead."),
-		EmojiItem(
-			emoji: "👩🏽‍💻",
-			name: "Woman Technologist",
-			description: "A woman behind a computer screen, working in the field of technology."),
-		EmojiItem(
-			emoji: "🗺",
-			name: "World Map",
-			description: "A rectangular map of the world. Generally depicted as a paper map creased at "
-			+ "its folds, Earth’s surface shown in green on blue ocean."),
+	@State private var parkHistoryList: [ParkHistory] = [
+		ParkHistory(
+			parkNum: 000001,
+			locationName: "44 Stanley",
+			locationAddress: "Braamfontein",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "22/02/2022",
+			parkPrice: 8,
+			parkTime: 43,
+			parkImage: "testImage_square"
+		),
+		ParkHistory(
+			parkNum: 000002,
+			locationName: "44 Stanley",
+			locationAddress: "Braamfontein",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "22/02/2022",
+			parkPrice: 8,
+			parkTime: 43,
+			parkImage: "testImage_square"
+		),
+		ParkHistory(
+			parkNum: 000002,
+			locationName: "44 Stanley",
+			locationAddress: "Braamfontein",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "22/02/2022",
+			parkPrice: 8,
+			parkTime: 43,
+			parkImage: "testImage_square"
+		),
+		ParkHistory(
+			parkNum: 000003,
+			locationName: "44 Stanley",
+			locationAddress: "Braamfontein",
+			locationLat: -26.1850882,
+			locationLong: 28.0187231,
+			parkDate: "22/02/2022",
+			parkPrice: 8,
+			parkTime: 43,
+			parkImage: "testImage_square"
+		)
 	]
+	
+	
 	
 	var body: some View {
 		NavigationView{
 			
-//			List(emojiList) {
-//				emojiItem in
-//
-//
-//				CardViewTwo()		.background(					NavigationLink(destination: DetailsView(emojiItem: emojiItem)) {
-//					EmptyView()
-//				}
-//
-//					.opacity(0))
-//
-//			}
-//			.navigationTitle("Parking History")
-//
-//
-//		}
-		
-					ScrollView {
-						VStack(spacing: 20) {
-							ForEach(emojiList, id: \.name) {
-								item in
-								NavigationLink(destination: DetailsView(emojiItem: item)) {
-		
-									CardViewOne()
-										.padding(.horizontal, 17)
-										.padding(.bottom, -10)
-										.foregroundColor(.primary)
-		
-		
-								}
-							}
+			//			List(emojiList) {
+			//				emojiItem in
+			//
+			//
+			//				CardViewTwo()		.background(					NavigationLink(destination: DetailsView(emojiItem: emojiItem)) {
+			//					EmptyView()
+			//				}
+			//
+			//					.opacity(0))
+			//
+			//			}
+			//			.navigationTitle("Parking History")
+			//
+			//
+			//		}
+			
+			ScrollView {
+				VStack(spacing: 20) {
+					ForEach(parkHistoryList, id: \.parkNum) {
+						item in
+						NavigationLink(destination: DetailsView(parkHistory: item)) {
+														
+							CardViewOne()
+								.padding(.horizontal, 17)
+								.padding(.bottom, -10)
+								.foregroundColor(.primary)
 						}
-					}.navigationTitle("Parking History")
-		
-		
+					}
 				}
+			}.navigationTitle("Parking History")
+			
+			
+		}
 		
 	}
 }
@@ -114,16 +108,10 @@ struct City: Identifiable {
 
 struct DetailsView: View {
 	
+	let parkHistory: ParkHistory
+	
 	@State var region = MKCoordinateRegion(
-		center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-	
-	let annotations = [
-		City(name: "London", coordinate: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275))
-	]
-	
-	let emojiItem: EmojiItem
-	
-	
+		center: CLLocationCoordinate2D(latitude: -26.1850882, longitude: 28.0187231), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 	
 	var body: some View{
 		VStack(alignment: .leading){
@@ -155,59 +143,87 @@ struct DetailsView: View {
 			
 			VStack {
 				VStack{
-					Map(coordinateRegion: $region, annotationItems: annotations) {
+					
+					Map(coordinateRegion: $region, annotationItems: [
+						City(name: parkHistory.locationName, coordinate: CLLocationCoordinate2D(latitude: parkHistory.locationLat, longitude: parkHistory.locationLong))
+					]) {
 						MapMarker(coordinate: $0.coordinate)
+			
 					}.allowsHitTesting(false)
 					
+					
+
 				}
-				.navigationBarTitle(Text("Park #00312"), displayMode: .inline)
-				.frame(maxWidth: .infinity, maxHeight: 350)
+				.navigationBarTitle(Text("#" + String(format: "%05d", parkHistory.parkNum)), displayMode: .inline)
+				.frame(maxWidth: .infinity, maxHeight: 300)
 				.cornerRadius(10)
 				.padding([.top, .leading, .trailing])
 				
 				HStack {
 					VStack(alignment: .leading) {
-						Text("44 Stanley").font(.title).fontWeight(.bold)
-						Text("Braamfontein").foregroundColor(.secondary)
+						Text(parkHistory.locationName).font(.title
+						).fontWeight(.bold)
+						Text(parkHistory.locationAddress).foregroundColor(.secondary)
 					}
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding(.horizontal)
 					
 					Text("R8")
-						.font(.system(size: 40))
+						.font(.largeTitle)
 						.fontWeight(.bold)
 						.padding([.top, .bottom, .trailing])
 						.frame(maxWidth: .infinity, alignment: .trailing)
 					
 				}
 				
-				VStack(alignment: .leading){
-					Text("Time Parked:").fontWeight(.semibold)
-					Text("43 minutes").fontWeight(.bold).font(.title)
+				HStack {
+					VStack(alignment: .leading){
+						Text("Date Parked").fontWeight(.semibold)
+							.font(.title3)
+						Text("22/09/2022").fontWeight(.regular).font(.body)
+					}
+					
+					Spacer()
+					
+					VStack(alignment: .leading){
+						Text("Time Parked").fontWeight(.semibold)
+							.font(.title3)
+						Text("43 minutes").fontWeight(.regular).font(.body)
+					}
+					
+
+				
 				}
 				
 				.frame(maxWidth: .infinity, alignment: .leading)
-				.padding()
+			.padding()
 				
 				
 				Spacer()
 				
 				Button(action:{}) {
 					Text("Report an Issue").fontWeight(.bold).padding().foregroundColor(Color.white)
+						.frame(maxWidth: .infinity)
+						.background(Color.red).cornerRadius(10).padding()
 				}
-				.frame(maxWidth: .infinity)
-				.background(Color.red).cornerRadius(10).padding()
+				
 			}
 		}
 	}
 }
 
-struct EmojiItem: Identifiable{
+struct ParkHistory: Identifiable{
 	let id = UUID()
 	
-	let emoji: String
-	let name: String
-	let description: String
+	let parkNum: Int
+	let locationName: String
+	let locationAddress: String
+	let locationLat: Double
+	let locationLong: Double
+	let parkDate: String
+	let parkPrice: Int
+	let parkTime: Int
+	let parkImage: String
 }
 
 struct HistoryScreen_Previews: PreviewProvider {
@@ -216,26 +232,11 @@ struct HistoryScreen_Previews: PreviewProvider {
 	}
 }
 
-struct CircleView: View {
-	var emojiItem: EmojiItem
-	
-	var body: some View {
-		ZStack{
-			Text(emojiItem.emoji)
-				.shadow(radius: 3)
-				.font(.largeTitle)
-				.frame(width: 65, height: 65)
-				.overlay(
-					Circle().stroke(Color.purple, lineWidth: 3))
-		}
-	}
-}
-
 struct CardViewOne: View {
 	//	var emojiItem: EmojiItem
 	
 	var body: some View {
-		HStack(alignment: .top) {
+		HStack(alignment: .center) {
 			Image("testImage_square")
 				.resizable()
 				.aspectRatio(contentMode: .fit)
@@ -244,32 +245,35 @@ struct CardViewOne: View {
 			
 			VStack(alignment: .leading){
 				Text("44 Stanley")
-					.font(.title2)
+					.font(.title3)
 					.fontWeight(.semibold)
 				
 				HStack{
 					
 					//					Image(systemName: "mappin.circle")
 					
-					Text("Braamfontein")
-						.font(.subheadline)
-						.fixedSize(horizontal: false, vertical: true)
+					Text("#00001")
+						.font(.body)
+						.fontWeight(.medium)
+						.fixedSize(horizontal: false, vertical: true).foregroundColor(.secondary)
 				}
 				
 				Spacer()
 				
-				Text("22/09/2022").foregroundColor(.secondary)
-					.font(.subheadline)
+				Text("22/09/2022")
+					.fontWeight(.light)
+					.foregroundColor(.secondary)
+					.font(.body)
 			}
 			.padding([.top, .bottom, .trailing], 12)
 			
 			Text("R8")
-				.font(.system(size: 60))
-				.fontWeight(.regular)
-				.padding([.top, .bottom, .trailing])
-				.frame(maxWidth: .infinity, alignment: .trailing)
+				.font(.largeTitle)
+				.fontWeight(.semibold)
+				.padding([.top, .bottom, .trailing], 20)
+				.frame(maxWidth: .infinity, alignment: .bottomTrailing)
 		}
-		.frame(maxWidth: .infinity, maxHeight: 100, alignment: .leading)
+		.frame(maxWidth: .infinity, maxHeight: 90, alignment: .center)
 		.background(Color("List Grey"))
 		.cornerRadius(10)
 		.padding(.top, 15)

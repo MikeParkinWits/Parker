@@ -13,41 +13,58 @@ struct WelcomeScreen: View {
 	var body: some View {
 		NavigationView()
 		{
-			VStack() {
-				Text("")
-					.searchable(text: $searchText, prompt: "Search Parking Areas...")
-				
-				HStack {
-					Text("Nearby Parking Areas")
-						.font(.title2)
-						.fontWeight(.semibold)
+			
+				VStack(alignment: .leading) {
+					
+						Text("Good Afternoon")
+							.font(.largeTitle)
+							.fontWeight(.bold)
+							.frame(width: 200,  alignment: .leading)
+							.padding([.top, .leading, .trailing])
+
+					
+						HStack {
+							Text("Explore Parking Areas")
+								.font(.title2)
+								.fontWeight(.medium)
+							
+							Spacer()
+							
+							Button("See all") {
+								//Put Code Here
+							}.foregroundColor(.secondary)
+						}
+						.padding(.horizontal)
+						.padding(.top, 0.5)
+						
+						ScrollView(.horizontal, showsIndicators: false) {
+							HStack(spacing: 16) {
+								ForEach(0 ..< 5) { item in
+									ParkingAreas()
+								}
+							}
+							.padding(.bottom, 3.0)
+							.padding(.horizontal)
+						}
 					
 					Spacer()
+						
+//						Divider()
+//							.frame(height: 1)
+//							.overlay(.gray)
+//							.padding(.horizontal)
 					
-					Button("See all") {
-						//Put Code Here
-					}.foregroundColor(.secondary)
+					
+					
+						
+						
+
+					ParkingStatus().padding(.top, 10)
+					
 				}
-				.padding(.horizontal)
-				
-				ScrollView(.horizontal, showsIndicators: false) {
-					HStack(spacing: 16) {
-						ForEach(0 ..< 5) { item in
-							ParkingAreas()
-						}
-					}
-					.padding(.bottom, 3.0)
-					.padding(.horizontal)
-				}
-				
-				Divider()
-					.padding(.horizontal)
-				
-				ParkingStatus()
-				
-			}
-			.frame(maxWidth: .infinity, alignment: .leading)
-			.navigationTitle("Welcome")
+				.frame(maxWidth: .infinity, alignment: .leading)
+			
+
 			
 			
 		}
