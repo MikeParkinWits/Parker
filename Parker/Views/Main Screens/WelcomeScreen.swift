@@ -47,6 +47,8 @@ struct WelcomeScreen: View {
 							.padding(.horizontal)
 						}
 					
+
+					
 					Spacer()
 						
 //						Divider()

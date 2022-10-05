@@ -12,7 +12,6 @@ struct ParkingAreas: View {
 		Button{} label: {
 			VStack(alignment: .leading){
 				
-				
 				Image("imageTestTwo")
 					.resizable()
 					.aspectRatio(contentMode: .fit)
@@ -32,8 +31,10 @@ struct ParkingAreas: View {
 							.foregroundColor(Color.white)
 							.background(Color.black.blur(radius: 20)), alignment: .bottomLeading
 					)
+					
 					.cornerRadius(10)
-					.shadow(radius: 3)
+					.shadow(color: Color.gray.opacity(0.9), radius: 5, x: 0, y: 0)
+					.padding(.top, 10)
 				
 				Text("44 Stanley")
 					.font(.headline)
@@ -43,7 +44,7 @@ struct ParkingAreas: View {
 					.font(.footnote)
 			}
 		}
-		.frame(width: 200, height: 180)
+		.frame(minWidth: 10, minHeight: 10)
 	}
 }
 

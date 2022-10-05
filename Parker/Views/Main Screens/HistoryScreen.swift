@@ -84,7 +84,7 @@ struct HistoryScreen: View {
 						item in
 						NavigationLink(destination: DetailsView(parkHistory: item)) {
 														
-							CardViewOne()
+							CardViewOne(parkHistory: item)
 								.padding(.horizontal, 17)
 								.padding(.bottom, -10)
 								.foregroundColor(.primary)
@@ -233,7 +233,9 @@ struct HistoryScreen_Previews: PreviewProvider {
 }
 
 struct CardViewOne: View {
-	//	var emojiItem: EmojiItem
+	
+	let parkHistory: ParkHistory
+
 	
 	var body: some View {
 		HStack(alignment: .center) {
@@ -252,7 +254,7 @@ struct CardViewOne: View {
 					
 					//					Image(systemName: "mappin.circle")
 					
-					Text("#00001")
+					Text("#" + String(format: "%05d", parkHistory.parkNum))
 						.font(.body)
 						.fontWeight(.medium)
 						.fixedSize(horizontal: false, vertical: true).foregroundColor(.secondary)
@@ -284,8 +286,8 @@ struct CardViewOne: View {
 
 
 struct CardViewTwo: View {
-	//	var emojiItem: EmojiItem
-	
+	//let parkHistory: ParkHistory
+
 	var body: some View {
 		HStack(alignment: .center) {
 			Image("testImage_square")
